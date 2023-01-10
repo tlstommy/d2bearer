@@ -1,11 +1,16 @@
-import Navbar from "./components/Navbar";
+//import container component
+//try and keep app.js clean
+
+import Container from "./components/Container";
+
 
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      hi
+      <Container>
+
+      </Container>
     </div>
   );
 }
