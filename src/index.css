@@ -34,8 +34,11 @@ code {
   outline-offset: 1px;
   margin-top: 2rem;
 
+  width: 50%;
+
 }
 
 button{
   margin-top: 1rem;
+  width: 40%;
 }
