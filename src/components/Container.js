@@ -1,4 +1,4 @@
-//container to hold stuff
+//container to hold stuff and do funcs
 
 //import reactand navbar
 import React from "react";
@@ -10,6 +10,21 @@ import Button from "./Button";
 
 
 export default function Container() {
+  
+  
+  function consoleTest(){
+    alert("Test!");
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   return (
     <div>
       <Navbar/>
@@ -22,11 +37,15 @@ export default function Container() {
                 D2-Bearer
               </h1>
           </div>
-          <div class="flex flex-col items-center">
-            <TextBox/>
-            <TextInput/>
-            <Button name={"hi there man paSSED BY NAssME PROP"}/>
-          </div>
+          <form onSubmit={consoleTest}>
+            <div class="flex flex-col items-center space-y-5">
+              <div className="flex flex-col items-center space-y-2">
+                <TextBox textboxText={"lorem ipsum text lusum text lusum text lusum text lule"}/>
+                <TextInput/>
+                <Button buttonText={"sUBMIT"}/>
+              </div>
+            </div>
+          </form>
         </div>
         
       </main>
