@@ -25,7 +25,7 @@ export default function Container() {
           <div class="flex flex-col items-center">
             <TextBox/>
             <TextInput/>
-            <Button/>
+            <Button name={"hi there man paSSED BY NAssME PROP"}/>
           </div>
         </div>
         
