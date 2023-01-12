@@ -1,7 +1,7 @@
 export default function Navbar() {
     return (
       <header>
-        NAVBAR!
+        D2-Bearer
       </header>
     );
   }

@@ -16,9 +16,24 @@ code {
     monospace;
 }
 
-.textInputBox {
-  margin-top: 10%;
-  border-width: 3px;
-  border-color: black;
 
+
+.textBox{
+
+  outline: 2px solid black;
+  padding: 3%;
+  outline-offset: 16px;
+  border-radius: 0.125rem;
+  margin: 3rem;
+}
+
+.textInputBox {
+
+  outline: 2px solid black;
+  outline-offset: 1px;
+  margin-top: 2rem;
+}
+
+button{
+  margin-top: 1rem;
 }
