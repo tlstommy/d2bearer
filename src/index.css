@@ -25,6 +25,7 @@ code {
   outline-offset: 16px;
   border-radius: 0.125rem;
   margin: 3rem;
+  
 }
 
 .textInputBox {
@@ -32,6 +33,7 @@ code {
   outline: 2px solid black;
   outline-offset: 1px;
   margin-top: 2rem;
+
 }
 
 button{
