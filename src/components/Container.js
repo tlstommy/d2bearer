@@ -19,13 +19,14 @@ export default function Container() {
   function updateInputData(e){
 
     //set the var inputData to e.target.Val which is the val of the passed param
-    setData({inputData: e.target.value})
+    //setData({inputData: ...e.target.value})
+    setData({...inputData,[e.target.name]: e.target.value})
   }
 
   //on button submit print out the inputData var from above
   function submit(e) {
     e.preventDefault();
-    console.log(inputData);
+    console.log(inputData["textInput"]);
     //alertTest(inputData);
   }
 
