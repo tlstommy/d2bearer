@@ -4,20 +4,34 @@
 import React from "react";
 import Navbar from "./Navbar";
 import TextBox from "./TextBox";
-import TextInput from "./TextInput";
+
 import Button from "./Button";
+import { useState } from 'react';
 
 
 
 export default function Container() {
   
-  
-  function consoleTest(){
-    alert("Test!");
+  // Declare a new state variable, inputData
+  const [inputData, setData] = useState({});
+
+
+  function updateInputData(e){
+
+    //set the var inputData to e.target.Val which is the val of the passed param
+    setData({inputData: e.target.value})
   }
-  
-  
-  
+
+  //on button submit print out the inputData var from above
+  function submit(e) {
+    e.preventDefault();
+    console.log(inputData);
+    //alertTest(inputData);
+  }
+
+  function alertTest(e){
+    alert(inputData["inputData:"]);
+  }
   
   
   
@@ -37,11 +51,11 @@ export default function Container() {
                 D2-Bearer
               </h1>
           </div>
-          <form onSubmit={consoleTest}>
+          <form onSubmit={submit}>
             <div class="flex flex-col items-center space-y-5">
               <div className="flex flex-col items-center space-y-2">
                 <TextBox textboxText={"lorem ipsum text lusum text lusum text lusum text lule"}/>
-                <TextInput/>
+                <input className="textInputBox " type="text" id="textInput" name="textInput" placeholder="Input Text Here" onChange={updateInputData}></input>
                 <Button buttonText={"sUBMIT"}/>
               </div>
             </div>
