@@ -1,5 +1,5 @@
 //container to hold stuff and do funcs
-
+//https://beta.reactjs.org/learn
 //import reactand navbar
 import React from "react";
 import Navbar from "./Navbar";
@@ -11,22 +11,26 @@ import { useState } from 'react';
 
 
 export default function Container() {
-  
+  let userInput;
+
   // Declare a new state variable, inputData
-  const [inputData, setData] = useState({});
+  const [inputData, setData] = useState('');
 
 
   function updateInputData(e){
-
-    //set the var inputData to e.target.Val which is the val of the passed param
-    //setData({inputData: ...e.target.value})
-    setData({...inputData,[e.target.name]: e.target.value})
+    //https://beta.reactjs.org/learn
+    //set the setData var from above to e
+    setData(e);
   }
 
   //on button submit print out the inputData var from above
   function submit(e) {
     e.preventDefault();
-    console.log(inputData["textInput"]);
+
+    //set data from submit
+    userInput = inputData;
+
+    console.log(userInput);
     //alertTest(inputData);
   }
 
@@ -56,7 +60,7 @@ export default function Container() {
             <div class="flex flex-col items-center space-y-5">
               <div className="flex flex-col items-center space-y-2">
                 <TextBox textboxText={"lorem ipsum text lusum text lusum text lusum text lule"}/>
-                <input className="textInputBox " type="text" id="textInput" name="textInput" placeholder="Input Text Here" onChange={updateInputData}></input>
+                <input className="textInputBox " type="text" id="textInput" name="textInput" placeholder="Input Text Here" onChange={event=>updateInputData(event.target.value)}></input>
                 <Button buttonText={"sUBMIT"}/>
               </div>
             </div>
