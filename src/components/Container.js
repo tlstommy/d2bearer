@@ -12,9 +12,13 @@ import { useState } from 'react';
 
 export default function Container() {
   let userInput;
+  let appCliID;
+  let appCliSecret;
 
-  // Declare a new state variable, inputData
+
+  // Declare a new state variable, inputData and set setdata to input data
   const [inputData, setData] = useState('');
+  const [textboxText, setTextData] = useState('');
 
 
   function updateInputData(e){
@@ -29,17 +33,22 @@ export default function Container() {
 
     //set data from submit
     userInput = inputData;
+    console.log(appCliID);
 
     console.log(userInput);
     //alertTest(inputData);
+    setTextData("he there");
+
   }
 
-  function alertTest(e){
-    alert(inputData["inputData:"]);
+
+  function refreshData(){
+    return (
+      <div>
+        <Container/>
+      </div>
+    );
   }
-  
-  
-  
   
   
   
@@ -59,7 +68,7 @@ export default function Container() {
           <form onSubmit={submit}>
             <div class="flex flex-col items-center space-y-5">
               <div className="flex flex-col items-center space-y-2">
-                <TextBox textboxText={"lorem ipsum text lusum text lusum text lusum text lule"}/>
+                <TextBox textboxText={textboxText}/>
                 <input className="textInputBox " type="text" id="textInput" name="textInput" placeholder="Input Text Here" onChange={event=>updateInputData(event.target.value)}></input>
                 <Button buttonText={"sUBMIT"}/>
               </div>
