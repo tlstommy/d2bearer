@@ -25,6 +25,7 @@ code {
   outline-offset: 16px;
   border-radius: 0.125rem;
   margin: 3rem;
+  white-space: pre-wrap;
   
 }
 
