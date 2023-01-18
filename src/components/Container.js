@@ -14,7 +14,8 @@ export default function Container() {
   let userInput;
   let appCliID;
   let appCliSecret;
-  let textInputComponent;
+  let authURL;
+
 
   let cliIDSet = false;
 
@@ -25,8 +26,9 @@ export default function Container() {
   const apiURL = "https://www.bungie.net/Platform/App/OAuth/Token/"
 
   
-  // Declare a new state variable, inputData and set setdata to input data
-  const [inputData, setData] = useState('');
+  // Declare a new state variable, inputData and set setInputData to input data
+  const [inputData, setInputData] = useState('');
+  const [InputDataPlaceholder, setInputDataPlaceholder] = useState('');
   const [cliID, setCliID] = useState('');
   const [cliSecret, setCliSecret] = useState('');
 
@@ -38,16 +40,12 @@ export default function Container() {
 
   //strings for each step
   const stepStrings = {
-    enterClientIDString: <p>This tool provides an easy and secure way to generate a oAuth bearer token for Bungie.net's Destiny 2 api.<br/><br/>You can access the Bungie developer portal&nbsp; 
-    <a class="hover:underline text-blue-600" href="https://www.bungie.net/en/Application">here.</a>
-    <br/><br/>To begin, please enter your Application's Client ID below and click submit.</p>,
+    enterClientIDString: 
+    <p>This tool provides an easy and secure way to generate a oAuth bearer token for Bungie.net's Destiny 2 api.<br/><br/>You can access the Bungie developer portal&nbsp; <a class="hover:underline text-blue-600" href="https://www.bungie.net/en/Application">here.</a><br/><br/>To begin, please enter your Application's Client ID below and click submit.</p>,
     step1Button: "Submit Client ID",
-
-
     enterClientSecretString: <p><b>App Client ID: </b>{cliID}<br/><br/><hr/><br/>Now, please enter your Application's Client Secret below and click submit.</p>,
     step2Button: "Submit Client Secret",
 
-    openAuthUrlString: <p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><br/><hr/><br/>Now, please enter your Application's Client Secret below and click submit.</p>,
   }
 
 
@@ -57,20 +55,21 @@ export default function Container() {
   useEffect(() => {
     setTextData(stepStrings.enterClientIDString);
     setButtonTextData(stepStrings.step1Button);
+    setInputDataPlaceholder("Enter Client ID")
   }, []);
   
   //update input data for each step
   function updateInputData(e){
     //https://beta.reactjs.org/learn
-    //set the setData var from above to e
-    setData(e);
+    //set the setInputData var from above to e
+    setInputData(e);
     if(stepCounter == 0){
       console.log(stepCounter);
       setCliID(e);
-      let cliIDSet = true;
 
     } else if(stepCounter == 1){
       setCliSecret(e);
+      
     }
     
     
@@ -86,8 +85,11 @@ export default function Container() {
     if (step == 0){
       setTextData(stepStrings.enterClientSecretString);
       setButtonTextData(stepStrings.step2Button)
+      setInputDataPlaceholder("Enter Client Secret")
     } else if (step == 1){
-      setTextData(stepStrings.openAuthUrlString);
+      //create the auth url str
+      let authURL = `https://www.bungie.net/en/OAuth/Authorize?client_id=${cliID}&response_type=code`;
+      setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><br/><hr/><br/>Now, please&nbsp;<br/><a class="hover:underline text-blue-600" href={authURL} target="_blank">Click here </a>and sign in to your Bungie account.</p>);
     }
 
   }
@@ -95,15 +97,25 @@ export default function Container() {
 
   //on button submit print out the inputData var from above
   function submit(e) {
-    e.preventDefault();
+    
 
+    e.preventDefault();
+    
+    //check if data was left blank
+    if(inputData == ""){
+      alert("The input field is empty!")
+      return;
+    }
+    
+    
     //set data from submit
     userInput = inputData;
     //console.log(appCliID);
 
     console.log(userInput);
-
     
+    //reset input data
+    setInputData("")
     updateAppData(stepCounter,inputData);
     setStepCounter(stepCounter+1)
 
@@ -136,7 +148,7 @@ export default function Container() {
             <div className="flex flex-col space-y-5">
               <div className="flex flex-col items-center space-y-2">
                 <TextBox textboxText={textboxText} />
-                <input className="textInputBox " type="text" id="textInput" name="textInput" placeholder="Input Data Here" onChange={event=>updateInputData(event.target.value)}></input>
+                <input className="textInputBox " type="text" id="textInput" name="textInput" value={inputData} placeholder={InputDataPlaceholder} onChange={event=>updateInputData(event.target.value)}></input>
                 <Button buttonText={buttonText}/>
               </div>
             </div>
