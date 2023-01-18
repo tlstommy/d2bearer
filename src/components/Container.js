@@ -48,15 +48,14 @@ export default function Container() {
 
   }
 
-  async function grabBearerToken(id,secret,code){
+function grabBearerToken(id,secret,code){
     var data;
     const oAuthRequestString = `client_id=${id}&client_secret=${secret}&Authorization%3A%20Basic%20%7Bbase64encoded(client-id%3Aclient-secret)%7D=&Content-Type%3A%20application%2Fx-www-form-urlencoded=&grant_type=authorization_code&code=${code}`
-
     fetch(apiURL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization' : `Basic base64(${id}:${secret}`.toLowerCase(),
+        'Authorization' : `Basic base64(${id}:${secret}`,
       },
       body: JSON.stringify(oAuthRequestString),
     }).then(res => {
@@ -64,8 +63,10 @@ export default function Container() {
     });
     //send a post request
     console.log(oAuthRequestString);
-   
-
+    
+    //send a post request
+    console.log(oAuthRequestString);
+    console.log(data);
     
   }
 
