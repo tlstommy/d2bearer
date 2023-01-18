@@ -48,23 +48,26 @@ export default function Container() {
 
   }
 
-  function grabBearerToken(id,secret,code){
-    let response;
-    let data;
-    const oAuthRequestString =`client_id=${id}&client_secret=${secret}&Authorization%3A%20Basic%20%7Bbase64encoded(client-id%3Aclient-secret)%7D=&Content-Type%3A%20application%2Fx-www-form-urlencoded=&grant_type=authorization_code&code=${code}`
-    const requestOptions = {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: oAuthRequestString,
-    };
+  async function grabBearerToken(id,secret,code){
+    var data;
+    const oAuthRequestString = `client_id=${id}&client_secret=${secret}&Authorization%3A%20Basic%20%7Bbase64encoded(client-id%3Aclient-secret)%7D=&Content-Type%3A%20application%2Fx-www-form-urlencoded=&grant_type=authorization_code&code=${code}`
+
+    fetch(apiURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization' : `Basic base64(${id}:${secret}`,
+      },
+      body: JSON.stringify(oAuthRequestString),
+    }).then(res => {
+      console.log("Request complete! response:", res);
+    });
     //send a post request
-    fetch(apiURL, requestOptions)
-    .then(response => response.json())
-    .then(data => this.setState({ postId: data.id }));
-    console.log(response);
+    console.log(oAuthRequestString);
+   
     console.log(data);
     
   }
-
 
 
   //use effect with an empty cond will trigger on page load.
