@@ -56,16 +56,16 @@ export default function Container() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization' : `Basic base64(${id}:${secret}`,
+        'Authorization' : `Basic base64(${id}:${secret}`.toLowerCase(),
       },
       body: JSON.stringify(oAuthRequestString),
     }).then(res => {
-      console.log("Request complete! response:", res);
+      console.log(res);
     });
     //send a post request
     console.log(oAuthRequestString);
    
-    console.log(data);
+
     
   }
 
