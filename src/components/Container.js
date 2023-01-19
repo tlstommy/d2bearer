@@ -24,7 +24,7 @@ export default function Container() {
 
 
 
-  const apiURL = "https://www.bungie.net/Platform/App/OAuth/Token/"
+  const apiURL = "https://www.bungie.net/Platform/App/OAuth/Token"
 
   
   // Declare a new state variable, inputData and set setInputData to input data
@@ -51,16 +51,30 @@ export default function Container() {
 function grabBearerToken(id,secret,code){
     var data;
     const oAuthRequestString = `client_id=${id}&client_secret=${secret}&Authorization%3A%20Basic%20%7Bbase64encoded(client-id%3Aclient-secret)%7D=&Content-Type%3A%20application%2Fx-www-form-urlencoded=&grant_type=authorization_code&code=${code}`
-    fetch(apiURL, {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    //https://www.bungie.net/en/OAuth/Authorize?client_id=40978&response_type=code
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("code", code);
+    urlencoded.append("client_id", id);
+    urlencoded.append("grant_type", "authorization_code");
+    urlencoded.append("client_secret", secret);
+    urlencoded.append("mode", "cors");
+    urlencoded.append("credentials", "same-origin");
+
+    var requestOptions = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization' : `Basic base64(${id}:${secret}`,
-      },
-      body: JSON.stringify(oAuthRequestString),
-    }).then(res => {
-      console.log(res);
-    });
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow'
+    };
+
+    fetch("https://www.bungie.net/Platform/App/OAuth/Token/", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+    
     //send a post request
     console.log(oAuthRequestString);
     
