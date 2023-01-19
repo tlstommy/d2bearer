@@ -13,9 +13,10 @@ import { useState, useEffect  } from 'react';
 export default function Container() {
   let userInput;
   let appCliID;
+  let split;
   let appCliSecret;
   let authURL;
-
+  let postResponseJSON;
 
 
   let cliIDSet = false;
@@ -44,7 +45,7 @@ export default function Container() {
   //strings for each step
   const stepStrings = {
     enterClientIDString: <p>This tool provides an easy and secure way to generate a OAuth bearer token for Bungie.net's Destiny 2 api.<br/><br/>You can access the Bungie Developer Portal&nbsp;<a class="hover:underline text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out" href="https://www.bungie.net/en/Application" target="_blank">here.</a><br/><br/>To begin, please enter your Application's Client ID below and click submit.</p>,
-    enterClientSecretString: <p><b>App Client ID: </b>{cliID}<br/><br/><hr/><br/>Now, please enter your Application's Client Secret below and click submit.</p>,
+    enterClientSecretString: <p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Now, please enter your Application's Client Secret below and click submit.</p>,
 
   }
 
@@ -103,8 +104,8 @@ async function grabBearerToken(id,secret,code){
   }
   //getting 401
   //this may be a bit of scuffed way to do this
-  async function updateAppData(step,data){
-    var response;
+  async function appSubmit(step,data){
+    var split;
     console.log(stepCounter);
     console.log(data);
     
@@ -116,14 +117,22 @@ async function grabBearerToken(id,secret,code){
     } else if (step == 1){
       //create the auth url str
       let authURL = `https://www.bungie.net/en/OAuth/Authorize?client_id=${cliID}&response_type=code`;
-      setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><br/><hr/><br/>Now, please&nbsp;<a class="hover:underline text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out" href={authURL} target="_blank">click here to authorize with bungie.net</a>&nbsp;and sign in to your Bungie account.<br/><br/>Upon successful authorization, your browser will redirected to the "Redirect URL" listed in your application's settings.<br/><br/>Please paste the redirect URL from above, below.</p>);
+      setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Now, please&nbsp;<a class="hover:underline text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out" href={authURL} target="_blank">click here to authorize with bungie.net</a>&nbsp;and sign in to your Bungie account.<br/><br/>Upon successful authorization, your browser will redirected to the "Redirect URL" listed in your application's settings.<br/><br/>Please paste the redirect URL from above, below.</p>);
       setInputDataPlaceholder("Enter Redirect URL")
     }else if (step == 2){
       console.log(redirectUrl);
-      setAuthCode(redirectUrl.split("code=").slice(-1));
+      split = redirectUrl.split("code=").slice(-1);
+      setAuthCode(split);
+
+      setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Your code has been generated, please click the button below to reveal it!</p>);
     }else if (step == 3){
-      response = await grabBearerToken(cliID,cliSecret,authCode);
-      console.log("async response: ", response);
+      postResponseJSON = await grabBearerToken(cliID,cliSecret,authCode);
+      console.log("async response: ", postResponseJSON);
+      alert(postResponseJSON["access_token"]);
+
+      
+      //console.log("async response: ", postResponseJSON);
+      //alert(postResponseJSON["access_token"]);
     }
 
   }
@@ -147,10 +156,9 @@ async function grabBearerToken(id,secret,code){
     //console.log(appCliID);
 
     console.log(userInput);
-    
     //reset input data
     setInputData("")
-    updateAppData(stepCounter,inputData);
+    appSubmit(stepCounter,inputData);
     setStepCounter(stepCounter+1)
 
   }
