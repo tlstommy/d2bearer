@@ -98,7 +98,7 @@ function grabBearerToken(id,secret,code){
     
     
   }
-  
+  //getting 401
   //this may be a bit of scuffed way to do this
   function updateAppData(step,data){
     console.log(stepCounter);
