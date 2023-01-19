@@ -48,9 +48,9 @@ export default function Container() {
 
   }
 
-function grabBearerToken(id,secret,code){
+async function grabBearerToken(id,secret,code){
     var data;
-    const oAuthRequestString = `client_id=${id}&client_secret=${secret}&Authorization%3A%20Basic%20%7Bbase64encoded(client-id%3Aclient-secret)%7D=&Content-Type%3A%20application%2Fx-www-form-urlencoded=&grant_type=authorization_code&code=${code}`
+    var fetchResponse;
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     //https://www.bungie.net/en/OAuth/Authorize?client_id=40978&response_type=code
@@ -61,27 +61,16 @@ function grabBearerToken(id,secret,code){
     urlencoded.append("grant_type", "authorization_code");
     urlencoded.append("client_secret", secret);
     urlencoded.append("mode", "cors");
-    urlencoded.append("credentials", "same-origin");
+
 
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
       body: urlencoded,
-      redirect: 'follow'
+      redirect: 'follow',
     };
 
-    fetch("https://www.bungie.net/Platform/App/OAuth/Token/", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
-    
-    //send a post request
-    console.log(oAuthRequestString);
-    
-    //send a post request
-    console.log(oAuthRequestString);
-    console.log(data);
-    
+    return fetch("https://www.bungie.net/Platform/App/OAuth/Token/", requestOptions).then(response => response.json())  
   }
 
 
@@ -114,7 +103,8 @@ function grabBearerToken(id,secret,code){
   }
   //getting 401
   //this may be a bit of scuffed way to do this
-  function updateAppData(step,data){
+  async function updateAppData(step,data){
+    var response;
     console.log(stepCounter);
     console.log(data);
     
@@ -132,7 +122,8 @@ function grabBearerToken(id,secret,code){
       console.log(redirectUrl);
       setAuthCode(redirectUrl.split("code=").slice(-1));
     }else if (step == 3){
-      grabBearerToken(cliID,cliSecret,authCode);
+      response = await grabBearerToken(cliID,cliSecret,authCode);
+      console.log("async response: ", response);
     }
 
   }
