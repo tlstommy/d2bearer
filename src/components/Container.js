@@ -13,7 +13,8 @@ import { useState, useEffect  } from 'react';
 export default function Container() {
   let userInput;
   let appCliID;
-  let split;
+  let split = " Not Set.";
+  let showInputBool;
   let appCliSecret;
   let authURL;
   let postResponseJSON;
@@ -31,8 +32,8 @@ export default function Container() {
   // Declare a new state variable, inputData and set setInputData to input data
   const [inputData, setInputData] = useState('');
   const [InputDataPlaceholder, setInputDataPlaceholder] = useState('');
-  const [cliID, setCliID] = useState('');
-  const [cliSecret, setCliSecret] = useState('');
+  const [cliID, setCliID] = useState('Not Set.');
+  const [cliSecret, setCliSecret] = useState('Not Set.');
   const [redirectUrl, setRedirectUrl] = useState('');
   const [authCode, setAuthCode] = useState('');
 
@@ -41,12 +42,20 @@ export default function Container() {
   const [buttonText, setButtonTextData] = useState('');
   const [stepCounter, setStepCounter] = useState(0);
 
+  
 
   //strings for each step
   const stepStrings = {
-    enterClientIDString: <p>This tool provides an easy and secure way to generate a OAuth bearer token for Bungie.net's Destiny 2 api.<br/><br/>You can access the Bungie Developer Portal&nbsp;<a class="hover:underline text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out" href="https://www.bungie.net/en/Application" target="_blank">here.</a><br/><br/>To begin, please enter your Application's Client ID below and click submit.</p>,
+    enterClientIDString: <p>This tool provides an easy and secure way to generate a OAuth bearer token for Bungie.net's Destiny 2 api.<br/><br/>You can access the Bungie Developer Portal&nbsp;<a class="hover:underline text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out" href="https://www.bungie.net/en/Application" target="_blank" rel="noreferrer">here.</a><br/><br/>To begin, please enter your Application's Client ID below and click submit.</p>,
     enterClientSecretString: <p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Now, please enter your Application's Client Secret below and click submit.</p>,
 
+  }
+  
+  //determines when to show the input box based on what step the user is on.
+  if(stepCounter < 3){
+    showInputBool = true;
+  }else{
+    showInputBool = false;
   }
 
 async function grabBearerToken(id,secret,code){
@@ -109,25 +118,42 @@ async function grabBearerToken(id,secret,code){
     console.log(stepCounter);
     console.log(data);
     
+    
     //update contents for each step
     if (step == 0){
       setTextData(stepStrings.enterClientSecretString);
       setButtonTextData("Submit Client Secret")
       setInputDataPlaceholder("Enter Client Secret")
+      
     } else if (step == 1){
       //create the auth url str
       let authURL = `https://www.bungie.net/en/OAuth/Authorize?client_id=${cliID}&response_type=code`;
-      setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Now, please&nbsp;<a class="hover:underline text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out" href={authURL} target="_blank">click here to authorize with bungie.net</a>&nbsp;and sign in to your Bungie account.<br/><br/>Upon successful authorization, your browser will redirected to the "Redirect URL" listed in your application's settings.<br/><br/>Please paste the redirect URL from above, below.</p>);
+      split = " Not Set."
+      setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Now, please&nbsp;<a class="hover:underline text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out" href={authURL} target="_blank" rel="noreferrer">click here to authorize with bungie.net</a>&nbsp;and sign in to your Bungie account.<br/><br/>Upon successful authorization, your browser will redirected to the "Redirect URL" listed in your application's settings.<br/><br/>Please paste the redirect URL from above, below.</p>);
       setInputDataPlaceholder("Enter Redirect URL")
+      setButtonTextData("Submit Redirect URL")
     }else if (step == 2){
       console.log(redirectUrl);
       split = redirectUrl.split("code=").slice(-1);
       setAuthCode(split);
-
-      setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Your code has been generated, please click the button below to reveal it!</p>);
+      setButtonTextData("Reveal Bearer Token")
+      setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Your Bearer token has been generated, please click the button below to reveal it!</p>);
     }else if (step == 3){
+      
       postResponseJSON = await grabBearerToken(cliID,cliSecret,authCode);
       console.log("async response: ", postResponseJSON);
+
+      setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/>
+        
+        <br/>Your Bearer token has been generated, please click the button below to reveal it!
+        
+        </p>);
+
+
+
+
+
+
       alert(postResponseJSON["access_token"]);
 
       
@@ -190,7 +216,7 @@ async function grabBearerToken(id,secret,code){
             <div className="flex flex-col space-y-5">
               <div className="flex flex-col items-center space-y-2">
                 <TextBox textboxText={textboxText} />
-                <input className="textInputBox " type="text" id="textInput" name="textInput" value={inputData} placeholder={InputDataPlaceholder} onChange={event=>updateInputData(event.target.value)}></input>
+                {showInputBool && <input className="textInputBox " type="text" id="textInput" name="textInput" value={inputData} placeholder={InputDataPlaceholder} onChange={event=>updateInputData(event.target.value)}></input>}
                 <Button buttonText={buttonText}/>
               </div>
             </div>
