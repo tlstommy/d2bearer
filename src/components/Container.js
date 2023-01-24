@@ -167,7 +167,7 @@ async function grabBearerToken(id,secret,code){
           <div>
             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Access Token</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{postResponseJSON["access_token"]}</dd>
+              <dd class="overflow-scroll mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0" >{postResponseJSON["access_token"]}</dd>
             </div>
             <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Access Token Type</dt>
@@ -179,7 +179,7 @@ async function grabBearerToken(id,secret,code){
             </div>
             <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Refresh Token</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{postResponseJSON["refresh_token"]}</dd>
+              <dd class="overflow-scroll mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{postResponseJSON["refresh_token"]}</dd>
             </div>
             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Refresh Token Expiry</dt>
