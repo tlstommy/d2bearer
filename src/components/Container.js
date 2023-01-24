@@ -58,7 +58,19 @@ export default function Container() {
     showInputBool = false;
   }
 
+function calculateExpiryTime(time){
+  return time;
+}
+
+
 async function grabBearerToken(id,secret,code){
+  
+    console.log("code", code);
+    console.log("client_id", id);
+    console.log("grant_type", "authorization_code");
+    console.log("client_secret", secret);
+
+
     var data;
     var fetchResponse;
     var myHeaders = new Headers();
@@ -138,16 +150,48 @@ async function grabBearerToken(id,secret,code){
       setAuthCode(split);
       setButtonTextData("Reveal Bearer Token")
       setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Your Bearer token has been generated, please click the button below to reveal it!</p>);
+    
+    //show token step
     }else if (step == 3){
-      
+      //get json
       postResponseJSON = await grabBearerToken(cliID,cliSecret,authCode);
       console.log("async response: ", postResponseJSON);
+      alert(postResponseJSON)
 
-      setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/>
-        
-        <br/>Your Bearer token has been generated, please click the button below to reveal it!
-        
-        </p>);
+      //return a description list of data
+      setTextData(
+        <div class="bg-white shadow sm:rounded-lg">
+          <div class="px-4 py-5 sm:px-6">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Application {cliID} JSON response</h3>
+          </div>
+          <div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Access Token</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{postResponseJSON["access_token"]}</dd>
+            </div>
+            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Access Token Type</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{postResponseJSON["token_type"]}</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Access Token Expiry</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{calculateExpiryTime(postResponseJSON["expires_in"])}</dd>
+            </div>
+            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Refresh Token</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{postResponseJSON["refresh_token"]}</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Refresh Token Expiry</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{calculateExpiryTime(postResponseJSON["refresh_expires_in"])}</dd>
+            </div>
+            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">App Membership ID</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{postResponseJSON["membership_id"]}</dd>
+            </div>
+          </div>
+        </div>
+      );
 
 
 
@@ -156,7 +200,6 @@ async function grabBearerToken(id,secret,code){
 
       alert(postResponseJSON["access_token"]);
 
-      
       //console.log("async response: ", postResponseJSON);
       //alert(postResponseJSON["access_token"]);
     }
@@ -190,13 +233,7 @@ async function grabBearerToken(id,secret,code){
   }
 
   console.log("current step: ",stepCounter);
-  function refreshData(){
-    return (
-      <div>
-        <Container/>
-      </div>
-    );
-  }
+
   
   
  
