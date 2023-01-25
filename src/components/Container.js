@@ -164,41 +164,39 @@ async function grabBearerToken(id,secret,code){
       setTextData(
         <div class="bg-white shadow sm:rounded-lg">
           <div class="px-4 py-3 sm:px-6">
-            <h3 class="text-lg font-medium leading-6 text-gray-900">Application {cliID} JSON response</h3>
+            <h3 class="text-lg font-medium leading-6 text-black">Application {cliID} JSON response</h3>
            
           </div>
           <hr/>
           <div>
-            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
+            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Access Token</dt>
-              <dd class="overflow-x-auto mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["access_token"]}</code></dd>
-              <dd><DocumentDuplicateIcon className="h-6 w-6 text-blue-500"/></dd>
+              <dd class="overflow-x-auto mt-1 text-sm text-white bg-slate-700 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["access_token"]}</code></dd>
             </div>
             <hr/>
-            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
+            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Access Token Type</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0"><code>{postResponseJSON["token_type"]}</code></dd>
+              <dd class="mt-1 text-sm text-white bg-slate-700 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["token_type"]}</code></dd>
             </div>
             <hr/>
-            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
+            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Access Token Expiry</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0"><code>{calculateExpiryTime(postResponseJSON["expires_in"])}</code></dd>
+              <dd class="mt-1 text-sm text-white bg-slate-700 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["expires_in"]} seconds. [{calculateExpiryTime(postResponseJSON["expires_in"])}]</code></dd>
             </div>
             <hr/>
-            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
+            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Refresh Token</dt>
-              <dd class="overflow-x-auto mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["refresh_token"]}</code></dd>
-              <dd><DocumentDuplicateIcon className="h-6 w-6 text-blue-500"/></dd>
+              <dd class="overflow-x-auto mt-1 text-sm text-white bg-slate-700 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["refresh_token"]}</code></dd>
             </div>
             <hr/>
-            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
+            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Refresh Token Expiry</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0"><code>{calculateExpiryTime(postResponseJSON["refresh_expires_in"])}</code></dd>
+              <dd class="mt-1 text-sm text-white bg-slate-700 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["refresh_expires_in"]} seconds. [{calculateExpiryTime(postResponseJSON["refresh_expires_in"])}]</code></dd>
             </div>
             <hr/>
-            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
+            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">App Membership ID</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0"><code>{postResponseJSON["membership_id"]}</code></dd>
+              <dd class="mt-1 text-sm text-white bg-slate-700 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["membership_id"]}</code></dd>
             </div>
           </div>
         </div>
