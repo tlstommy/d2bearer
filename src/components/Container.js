@@ -8,6 +8,9 @@ import TextBox from "./TextBox";
 import Button from "./Button";
 import { useState, useEffect  } from 'react';
 
+//heroicons icons
+import { DocumentDuplicateIcon } from '@heroicons/react/24/solid'
+
 
 
 export default function Container() {
@@ -50,7 +53,6 @@ export default function Container() {
     enterClientSecretString: <p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Now, please enter your Application's Client Secret below and click submit.</p>,
 
   }
-  
   //determines when to show the input box based on what step the user is on.
   if(stepCounter < 3){
     showInputBool = true;
@@ -156,38 +158,47 @@ async function grabBearerToken(id,secret,code){
       //get json
       postResponseJSON = await grabBearerToken(cliID,cliSecret,authCode);
       console.log("async response: ", postResponseJSON);
-      alert(postResponseJSON)
+      //alert(postResponseJSON)
 
       //return a description list of data
       setTextData(
         <div class="bg-white shadow sm:rounded-lg">
-          <div class="px-4 py-5 sm:px-6">
+          <div class="px-4 py-3 sm:px-6">
             <h3 class="text-lg font-medium leading-6 text-gray-900">Application {cliID} JSON response</h3>
+           
           </div>
+          <hr/>
           <div>
-            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Access Token</dt>
-              <dd class="overflow-scroll mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0" >{postResponseJSON["access_token"]}</dd>
+              <dd class="overflow-x-auto mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["access_token"]}</code></dd>
+              <dd><DocumentDuplicateIcon className="h-6 w-6 text-blue-500"/></dd>
             </div>
-            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <hr/>
+            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Access Token Type</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{postResponseJSON["token_type"]}</dd>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0"><code>{postResponseJSON["token_type"]}</code></dd>
             </div>
-            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <hr/>
+            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Access Token Expiry</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{calculateExpiryTime(postResponseJSON["expires_in"])}</dd>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0"><code>{calculateExpiryTime(postResponseJSON["expires_in"])}</code></dd>
             </div>
-            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <hr/>
+            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Refresh Token</dt>
-              <dd class="overflow-scroll mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{postResponseJSON["refresh_token"]}</dd>
+              <dd class="overflow-x-auto mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["refresh_token"]}</code></dd>
+              <dd><DocumentDuplicateIcon className="h-6 w-6 text-blue-500"/></dd>
             </div>
-            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <hr/>
+            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Refresh Token Expiry</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{calculateExpiryTime(postResponseJSON["refresh_expires_in"])}</dd>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0"><code>{calculateExpiryTime(postResponseJSON["refresh_expires_in"])}</code></dd>
             </div>
-            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <hr/>
+            <div class="px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">App Membership ID</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{postResponseJSON["membership_id"]}</dd>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0"><code>{postResponseJSON["membership_id"]}</code></dd>
             </div>
           </div>
         </div>
@@ -198,10 +209,10 @@ async function grabBearerToken(id,secret,code){
 
 
 
-      alert(postResponseJSON["access_token"]);
+      //alert(postResponseJSON["access_token"]);
 
       //console.log("async response: ", postResponseJSON);
-      //alert(postResponseJSON["access_token"]);
+      ////alert(postResponseJSON["access_token"]);
     }
 
   }
@@ -215,10 +226,10 @@ async function grabBearerToken(id,secret,code){
     
     //check if data was left blank
     if(inputData == ""){
-      //alert("The input field is empty!")
+      ////alert("The input field is empty!")
       //return;
     }
-    
+
     
     //set data from submit
     userInput = inputData;
