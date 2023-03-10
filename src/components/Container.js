@@ -180,7 +180,7 @@ async function grabBearerToken(id,secret,code){
           <div>
             <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-black sm:col-span-1">Access Token</dt>
-              <dd class="overflow-x-auto mt-1 text-sm text-white bg-slate-700 sm:col-span-2 sm:mt-0 scrollbar-hide"><code>{postResponseJSON["access_token"]}</code></dd>
+              <dd class="overflow-x-auto mt-1 text-sm text-white bg-slate-700 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["access_token"]}</code></dd>
             </div>
             <hr/>
             <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -195,7 +195,7 @@ async function grabBearerToken(id,secret,code){
             <hr/>
             <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-black sm:col-span-1">Refresh Token</dt>
-              <dd class="overflow-x-auto mt-1 text-sm text-white bg-slate-700 sm:col-span-2 sm:mt-0 scrollbar-hide"><code>{postResponseJSON["refresh_token"]}</code></dd>
+              <dd class="overflow-x-auto mt-1 text-sm text-white bg-slate-700 sm:col-span-2 sm:mt-0"><code>{postResponseJSON["refresh_token"]}</code></dd>
             </div>
             <hr/>
             <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -209,19 +209,15 @@ async function grabBearerToken(id,secret,code){
             </div>
             <hr/>
             <div class="px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-              <div id="accordionExample" data-accordion="collapse">
-                <h2 id="accordion-collapse-heading-1">
-                  <button type="button" class="flex items-center justify-between w-full" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
-                    <span>Full JSON Response</span>
-                    <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                  </button>
-                </h2>
-                <div id="accordion-collapse-body-1" class="accordion-collapse collapse" aria-labelledby="accordion-collapse-heading-1" data-bs-parent="#accordionExample">
-                  <div class="accordion-body p-5">
-                    <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-                    <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="/docs/getting-started/introduction/" class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
-                  </div>
-                </div>
+              <div class="question-wrap">
+                <details>
+                  <summary class="text-sm font-medium text-black sm:col-span-1">
+                    <h2>Click to view Full JSON Response</h2>
+                  </summary>
+                  <p>
+                    teststest
+                  </p>
+                </details>
               </div>
             </div>
           </div>          
