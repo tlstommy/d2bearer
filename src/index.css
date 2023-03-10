@@ -16,6 +16,16 @@ code {
     monospace;
 }
 
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+summary {
+  cursor: pointer;
+}
 
 
 .textBox{
