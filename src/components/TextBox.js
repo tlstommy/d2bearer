@@ -2,7 +2,7 @@
 export default function TextBox(props) {
     return (
       <div className="textBox break-normal">
-        <p defaultValue={props.defaultValue}>{props.textboxText}</p>
+        <p>{props.textboxText}</p>
       </div>
     );
 }

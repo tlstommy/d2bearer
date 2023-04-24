@@ -44,6 +44,7 @@ export default function Container() {
   const [textboxText, setTextData] = useState('');
   const [buttonText, setButtonTextData] = useState('');
   const [stepCounter, setStepCounter] = useState(0);
+  const [inputType,setInputType] = useState('')
 
   
 
@@ -110,6 +111,7 @@ async function grabBearerToken(id,secret,code){
 
   //use effect with an empty cond will trigger on page load.
   useEffect(() => {
+    setInputType("number");
     setTextData(stepStrings.enterClientIDString);
     setButtonTextData("Submit Client ID");
     setInputDataPlaceholder("Enter Client ID")
@@ -121,21 +123,17 @@ async function grabBearerToken(id,secret,code){
     //set the setInputData var from above to e
     setInputData(e);
     if(stepCounter == 0){
-      console.log(stepCounter);
       setCliID(e);
     } else if(stepCounter == 1){
       setCliSecret(e);
     }else if(stepCounter == 2){
       setRedirectUrl(e);
-    }else if(stepCounter == 3){
-      
     }
 
     
     
-    
   }
-  //getting 401
+
   //this may be a bit of scuffed way to do this
   async function appSubmit(step,data){
     var split;
@@ -146,8 +144,9 @@ async function grabBearerToken(id,secret,code){
     //update contents for each step
     if (step == 0){
       setTextData(stepStrings.enterClientSecretString);
-      setButtonTextData("Submit Client Secret")
-      setInputDataPlaceholder("Enter Client Secret")
+      setButtonTextData("Submit Client Secret");
+      setInputDataPlaceholder("Enter Client Secret");
+      setInputType("string");
       
     } else if (step == 1){
       //create the auth url str
@@ -156,6 +155,7 @@ async function grabBearerToken(id,secret,code){
       setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Now, please&nbsp;<a class="hover:underline text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out" href={authURL} target="_blank" rel="noreferrer">click here to authorize with bungie.net</a>&nbsp;and sign in to your Bungie account.<br/><br/>Upon successful authorization, your browser will redirected to the "Redirect URL" listed in your application's settings.<br/><br/>Please paste the redirect URL from above, below.</p>);
       setInputDataPlaceholder("Enter Redirect URL")
       setButtonTextData("Submit Redirect URL")
+      setInputType("string");
     }else if (step == 2){
       console.log(redirectUrl);
       split = redirectUrl.split("code=").slice(-1);
@@ -168,7 +168,7 @@ async function grabBearerToken(id,secret,code){
       //get json
       postResponseJSON = await grabBearerToken(cliID,cliSecret,authCode);
       console.log("async response: ", postResponseJSON);
-      //alert(postResponseJSON)
+      setButtonTextData("Generate a new Bearer Token")
 
       //return a description list of data
       setTextData(
@@ -214,8 +214,8 @@ async function grabBearerToken(id,secret,code){
                   <summary class="text-sm font-medium text-black sm:col-span-1">
                     <h2>Click to view Full JSON Response</h2>
                   </summary>
-                  <p>
-                    teststest
+                  <p class="text-sm text-white px-5 py-6 bg-slate-700 break-all">
+                    <code>{JSON.stringify(postResponseJSON,null,2)+"\n"}</code>
                   </p>
                 </details>
               </div>
@@ -223,16 +223,8 @@ async function grabBearerToken(id,secret,code){
           </div>          
         </div>
       );
-
-
-
-
-
-
-      //alert(postResponseJSON["access_token"]);
-
-      //console.log("async response: ", postResponseJSON);
-      ////alert(postResponseJSON["access_token"]);
+    }else{
+      window.location.reload(false);
     }
 
   }
@@ -245,9 +237,9 @@ async function grabBearerToken(id,secret,code){
     e.preventDefault();
     
     //check if data was left blank
-    if(inputData == ""){
-      ////alert("The input field is empty!")
-      //return;
+    if(inputData == "" && stepCounter != 3){
+      alert("The input field is empty!")
+      return;
     }
 
     
@@ -275,7 +267,7 @@ async function grabBearerToken(id,secret,code){
       <main className="place-items-center flex h-screen ">
         <div></div>
         <div className="m-auto">
-          <div className="title">
+          <div className="title text-center">
               <h1 className="text-6xl font-normal">
                 D2-Bearer
               </h1>
@@ -284,7 +276,7 @@ async function grabBearerToken(id,secret,code){
             <div className="flex flex-col space-y-5">
               <div className="flex flex-col items-center space-y-2">
                 <TextBox textboxText={textboxText} />
-                {showInputBool && <input className="textInputBox " type="text" id="textInput" name="textInput" value={inputData} placeholder={InputDataPlaceholder} onChange={event=>updateInputData(event.target.value)}></input>}
+                {showInputBool && <input className="textInputBox " type={inputType} id="textInput" name="textInput" value={inputData} placeholder={InputDataPlaceholder} onChange={event=>updateInputData(event.target.value)}></input>}
                 <Button buttonText={buttonText}/>
               </div>
             </div>
