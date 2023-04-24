@@ -100,7 +100,7 @@ async function grabBearerToken(id,secret,code){
     setTextData(stepStrings.enterClientIDString);
     setButtonTextData("Submit Client ID");
     setInputDataPlaceholder("Enter Client ID")
-  }, [stepStrings.enterClientIDString]);
+  }, []);
   
   //update input data for each step
   function updateInputData(e){
@@ -248,6 +248,7 @@ async function grabBearerToken(id,secret,code){
   return (
     <div>
       <Navbar/>
+
       <main className="place-items-center flex h-screen ">
         <div></div>
         <div className="m-auto">
