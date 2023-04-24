@@ -107,11 +107,11 @@ async function grabBearerToken(id,secret,code){
     //https://beta.reactjs.org/learn
     //set the setInputData var from above to e
     setInputData(e);
-    if(stepCounter == 0){
+    if(stepCounter === 0){
       setCliID(e);
-    } else if(stepCounter == 1){
+    } else if(stepCounter === 1){
       setCliSecret(e);
-    }else if(stepCounter == 2){
+    }else if(stepCounter === 2){
       setRedirectUrl(e);
     }
 
@@ -127,13 +127,13 @@ async function grabBearerToken(id,secret,code){
     
     
     //update contents for each step
-    if (step == 0){
+    if (step === 0){
       setTextData(stepStrings.enterClientSecretString);
       setButtonTextData("Submit Client Secret");
       setInputDataPlaceholder("Enter Client Secret");
       setInputType("string");
       
-    } else if (step == 1){
+    } else if (step === 1){
       //create the auth url str
       let authURL = `https://www.bungie.net/en/OAuth/Authorize?client_id=${cliID}&response_type=code`;
       split = " Not Set."
@@ -141,7 +141,7 @@ async function grabBearerToken(id,secret,code){
       setInputDataPlaceholder("Enter Redirect URL")
       setButtonTextData("Submit Redirect URL")
       setInputType("string");
-    }else if (step == 2){
+    }else if (step === 2){
       console.log(redirectUrl);
       split = redirectUrl.split("code=").slice(-1);
       setAuthCode(split);
@@ -149,7 +149,7 @@ async function grabBearerToken(id,secret,code){
       setTextData(<p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Your Bearer token has been generated, please click the button below to reveal it!</p>);
     
     //show token step
-    }else if (step == 3){
+    }else if (step === 3){
       //get json
       postResponseJSON = await grabBearerToken(cliID,cliSecret,authCode);
       console.log("async response: ", postResponseJSON);
@@ -222,7 +222,7 @@ async function grabBearerToken(id,secret,code){
     e.preventDefault();
     
     //check if data was left blank
-    if(inputData == "" && stepCounter < 3){
+    if(inputData === "" && stepCounter < 3){
       alert("The input field is empty!")
       return;
     }
@@ -258,7 +258,7 @@ async function grabBearerToken(id,secret,code){
               </h1>
           </div>
           <form onSubmit={submit}>
-            <div className="flex flex-col space-y-5">
+            <div className="flex flex-col space-y-4">
               <div className="flex flex-col items-center space-y-2">
                 <TextBox textboxText={textboxText} />
                 {showInputBool && <input className="textInputBox " type={inputType} id="textInput" name="textInput" value={inputData} placeholder={InputDataPlaceholder} onChange={event=>updateInputData(event.target.value)}></input>}
