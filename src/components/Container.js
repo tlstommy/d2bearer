@@ -8,28 +8,14 @@ import TextBox from "./TextBox";
 import Button from "./Button";
 import { useState, useEffect  } from 'react';
 
-//heroicons icons
-import { DocumentDuplicateIcon } from '@heroicons/react/24/solid'
-
-
 
 export default function Container() {
   let userInput;
-  let appCliID;
   let split = " Not Set.";
   let showInputBool;
-  let appCliSecret;
-  let authURL;
+
   let postResponseJSON;
 
-
-  let cliIDSet = false;
-
-  //counts each step in the cycle of token generation
-
-
-
-  const apiURL = "https://www.bungie.net/Platform/App/OAuth/Token"
 
   
   // Declare a new state variable, inputData and set setInputData to input data
@@ -84,8 +70,7 @@ async function grabBearerToken(id,secret,code){
     console.log("client_secret", secret);
 
 
-    var data;
-    var fetchResponse;
+
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     //https://www.bungie.net/en/OAuth/Authorize?client_id=40978&response_type=code
@@ -115,7 +100,7 @@ async function grabBearerToken(id,secret,code){
     setTextData(stepStrings.enterClientIDString);
     setButtonTextData("Submit Client ID");
     setInputDataPlaceholder("Enter Client ID")
-  }, []);
+  }, [stepStrings.enterClientIDString]);
   
   //update input data for each step
   function updateInputData(e){
@@ -237,7 +222,7 @@ async function grabBearerToken(id,secret,code){
     e.preventDefault();
     
     //check if data was left blank
-    if(inputData == "" && stepCounter != 3){
+    if(inputData == "" && stepCounter < 3){
       alert("The input field is empty!")
       return;
     }
@@ -263,7 +248,6 @@ async function grabBearerToken(id,secret,code){
   return (
     <div>
       <Navbar/>
-
       <main className="place-items-center flex h-screen ">
         <div></div>
         <div className="m-auto">
