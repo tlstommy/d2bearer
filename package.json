@@ -1,7 +1,7 @@
 {
   "name": "d2-bearer",
   "version": "0.1.0",
-  "homepage": "https://lulamae12.github.io/",
+  "homepage": "https://lulamae12.github.io/d2bearer/",
   "private": true,
   "dependencies": {
     "@heroicons/react": "^2.0.13",
