@@ -102,7 +102,7 @@ async function grabBearerToken(id,secret,code){
       setButtonTextData("Submit Client ID");
       setInputDataPlaceholder("Enter Client ID");
     }
-    setData()
+    setData();
   }, []);
   
   //update input data for each step
@@ -110,6 +110,7 @@ async function grabBearerToken(id,secret,code){
     //https://beta.reactjs.org/learn
     //set the setInputData var from above to e
     setInputData(e);
+
     if(stepCounter === 0){
       setCliID(e);
     } else if(stepCounter === 1){
@@ -202,6 +203,7 @@ async function grabBearerToken(id,secret,code){
                   <summary class="text-sm font-medium text-black sm:col-span-1">
                     <h2>Click to view Full JSON Response</h2>
                   </summary>
+                  <br></br>
                   <p class="text-sm text-white px-5 py-6 bg-slate-700 break-all">
                     <code>{JSON.stringify(postResponseJSON,null,2)+"\n"}</code>
                   </p>
@@ -251,7 +253,6 @@ async function grabBearerToken(id,secret,code){
   return (
     <div>
       <Navbar/>
-
       <main className="place-items-center flex">
         <div className="m-auto">
           <div className="title text-center">
@@ -269,9 +270,9 @@ async function grabBearerToken(id,secret,code){
             </div>
           </form>
         </div>
-        
       </main>
-      <div></div>
+      <br />
+      <br />
     </div>
   );
 }

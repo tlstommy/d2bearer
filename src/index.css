@@ -42,6 +42,7 @@ summary {
   margin: 2rem;
   white-space: pre-wrap;
   width: 36vw;
+  height: max-content;
   
 }
 
@@ -68,7 +69,7 @@ button:hover{
 }
 
 .title{
-  margin-top: 20%;
+  margin-top: 3%;
   
 }
 

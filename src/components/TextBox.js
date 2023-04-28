@@ -2,7 +2,7 @@
 export default function TextBox(props) {
     return (
       <div className="textBox break-normal">
-        <p>{props.textboxText}</p>
+        <span id="textBoxSpan">{props.textboxText}</span>
       </div>
     );
 }
