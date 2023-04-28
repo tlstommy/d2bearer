@@ -1,4 +1,5 @@
 import { Github } from 'react-bootstrap-icons'
+import { QuestionCircle } from 'react-bootstrap-icons'
 
 
 export default function Navbar() {
@@ -10,7 +11,8 @@ export default function Navbar() {
               <b>D2-Bearer</b>
             </div>
             <div class="flex items-center lg:order-2">
-                <a href="https://github.com/lulamae12/d2bearer"><Github size={32}/></a>
+              <a class="px-3" href="https://github.com/lulamae12/d2bearer"><QuestionCircle size={32}/></a>
+              <a class="px-3" href="https://github.com/lulamae12/d2bearer"><Github size={32}/></a>
             </div>
           </div>
         </nav>
