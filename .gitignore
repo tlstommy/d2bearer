@@ -24,3 +24,6 @@ yarn-error.log*
 
 tmp.txt
 
+
+# Local Netlify folder
+.netlify
