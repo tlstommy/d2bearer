@@ -1,7 +1,7 @@
 {
   "name": "d2-bearer",
   "version": "0.1.0",
-  "homepage": "d2bearer.tlstommy.com",
+  "homepage": "d2bearer",
   "private": true,
   "dependencies": {
     "@heroicons/react": "^2.0.13",
