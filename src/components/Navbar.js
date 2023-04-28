@@ -1,3 +1,5 @@
+import { Github } from 'react-bootstrap-icons'
+
 export default function Navbar() {
     return (
       <header>
@@ -7,7 +9,7 @@ export default function Navbar() {
               <b>D2-Bearer</b>
             </div>
             <div class="flex items-center lg:order-2">
-                <b>[GH]</b>
+                <b><Github size={32}/></b>
             </div>
           </div>
         </nav>
