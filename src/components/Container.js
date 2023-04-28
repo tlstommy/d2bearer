@@ -96,10 +96,13 @@ async function grabBearerToken(id,secret,code){
 
   //use effect with an empty cond will trigger on page load.
   useEffect(() => {
-    setInputType("number");
-    setTextData(stepStrings.enterClientIDString);
-    setButtonTextData("Submit Client ID");
-    setInputDataPlaceholder("Enter Client ID")
+    function setData(){
+      setInputType("number");
+      setTextData(stepStrings.enterClientIDString);
+      setButtonTextData("Submit Client ID");
+      setInputDataPlaceholder("Enter Client ID");
+    }
+    setData()
   }, []);
   
   //update input data for each step
