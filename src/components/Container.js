@@ -264,7 +264,8 @@ async function grabBearerToken(id,secret,code){
             <div className="flex flex-col space-y-4">
               <div className="flex flex-col items-center space-y-2">
                 <TextBox textboxText={textboxText} />
-                {showInputBool && <input className="textInputBox" type={inputType} id="textInput" name="textInput" value={inputData} placeholder={InputDataPlaceholder} onChange={event=>updateInputData(event.target.value)}></input>}
+                <br />
+                {showInputBool && <input className="textInputBox w-1/3" type={inputType} id="textInput" name="textInput" value={inputData} placeholder={InputDataPlaceholder} onChange={event=>updateInputData(event.target.value)}></input>}
                 <Button buttonText={buttonText}/>
               </div>
             </div>

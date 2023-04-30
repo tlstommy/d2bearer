@@ -37,12 +37,13 @@ summary {
 
   outline: 2px solid black;
   padding: 3%;
+  margin-left: 3rem;
+  margin-right: 3rem;
   outline-offset: 16px;
   border-radius: 0.125rem;
-  margin: 2rem;
   white-space: pre-wrap;
-  width: 36vw;
   height: max-content;
+  width: auto;
   
 }
 
@@ -51,8 +52,8 @@ summary {
   outline: 2px solid black;
   outline-offset: 1px;
   margin-top: 2rem;
-
-  width: 50%;
+  width: 260px;
+  
 
 }
 
@@ -69,7 +70,7 @@ button:hover{
 }
 
 .title{
-  margin-top: 3%;
+  padding-bottom: 5%;
   
 }
 
