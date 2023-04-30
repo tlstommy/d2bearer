@@ -57,6 +57,29 @@ summary {
 
 }
 
+.logo-icon {
+  margin-top: 1rem;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("assets/destiny.svg");
+}
+
+.logo-icon-navbar {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("assets/destiny.svg");
+}
+
+
+
 button{
   margin-top: 1rem;
   width: max-content;
