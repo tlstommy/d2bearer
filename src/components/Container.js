@@ -7,6 +7,7 @@ import TextBox from "./TextBox";
 
 import Button from "./Button";
 import { useState, useEffect  } from 'react';
+import destinyLogo from '../assets/destiny.svg';
 
 
 export default function Container() {
@@ -256,6 +257,7 @@ async function grabBearerToken(id,secret,code){
       <main className="place-items-center flex">
         <div className="m-auto">
           <div className="title text-center">
+            <img src = {destinyLogo} alt="destiny logo svg"/>
               <h1 className="text-6xl font-normal">
                 D2-Bearer
               </h1>
