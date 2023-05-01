@@ -9,6 +9,19 @@ import PopupModal from "./PopupModal";
 export default function Navbar() {
   const [showModal, setShowModal] = React.useState(false);
 
+  const helpStr = `
+  D2-Bearer provides an easy and secure way to generate an OAuth Bearer Token
+  <br><br>
+  
+  It is important that the application's origin header is set correctly or it wont generate the token properly!
+  <br><br>
+  Have an issue or suggestion? Please submit an issue <a class="text-blue-500" href="https://github.com/lulamae12/d2bearer/issues">here!</a>
+  <hr>
+  <small>
+    <a class="text-blue-500" href="https://github.com/Bungie-net/api/wiki/OAuth-Documentation">Bungie.net API documentation</a>
+  </small>`
+  
+
   return (
     <header>
       <nav class="mb-2 mt-0 text-2xl bg-gray-500 py-5 px-3 lg:px-6 sfont-medium leading-tight text-primary">
@@ -50,7 +63,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      {showModal ? (<PopupModal showModal={showModal} setShowModal={setShowModal} />) : null}
+      {showModal ? (<PopupModal showModal={showModal} setShowModal={setShowModal} modalTitle={"Help"} modalBody={<div dangerouslySetInnerHTML={{ __html: helpStr }} />}/>) : null}
     </header>
   );
 }

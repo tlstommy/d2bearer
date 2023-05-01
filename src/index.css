@@ -80,14 +80,14 @@ summary {
 }
 
 
-button{
+.blue-button{
   margin-top: 1rem;
   width: max-content;
   border-left: 10px solid #3c82f6;
   border-right: 10px solid #3c82f6;
 }
 
-button:hover{
+.blue-button:hover{
   border-left: 10px solid #1c4ed8;
   border-right: 10px solid #1c4ed8;
 }
