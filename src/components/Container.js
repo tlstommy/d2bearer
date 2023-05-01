@@ -274,8 +274,6 @@ async function grabBearerToken(id,secret,code){
           </form>
         </div>
       </main>
-      <br />
-      <br />
     </div>
   );
 }
