@@ -4,7 +4,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import TextBox from "./TextBox";
-
+import { CodeSlash } from 'react-bootstrap-icons'
 import Button from "./Button";
 import { useState, useEffect  } from 'react';
 
@@ -201,8 +201,9 @@ async function grabBearerToken(id,secret,code){
             <div class="px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
               <div class="question-wrap">
                 <details>
-                  <summary class="text-sm font-medium text-black sm:col-span-1">
+                  <summary class="text-sm font-medium text-black sm:col-span-1 flex items-center justify-between w-full">
                     <h2>Click to view Full JSON Response</h2>
+                    <CodeSlash/>
                   </summary>
                   <br></br>
                   <p class="text-sm text-white px-5 py-6 bg-slate-700 break-all">
