@@ -10,6 +10,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to bottom right,#02075d, #48bf91) fixed;
+  
 }
 
 h1 svg {
@@ -36,22 +38,23 @@ summary {
 
 .textBox{
 
-  outline: 2px solid black;
+  border: 3px solid black;
+  border-radius: 1.125rem;
   padding: 3%;
   margin-left: 3rem;
   margin-right: 3rem;
-  outline-offset: 16px;
-  border-radius: 0.125rem;
   white-space: pre-wrap;
   height: max-content;
   width: auto;
+  background-color: white;
+  
   
 }
 
 .textInputBox {
 
-  outline: 2px solid black;
-  outline-offset: 1px;
+  border: 2px solid black;
+  
   margin-top: 2rem;
   width: 260px;
   

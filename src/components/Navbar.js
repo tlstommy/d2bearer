@@ -30,7 +30,7 @@ export default function Navbar() {
             <span className="logo-icon-navbar"></span>
             <b>2-Bearer</b>
           </div>
-          <div class="flex items-center lg:order-2">
+          <div className="flex items-center lg:order-2">
             <Tooltip class="absolute z-50 whitespace-normal break-words rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none"
               content="CLI-Version"
               animate={{
