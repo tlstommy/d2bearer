@@ -17,8 +17,6 @@ export default function Container() {
 
   let postResponseJSON;
 
-
-  
   // Declare a new state variable, inputData and set setInputData to input data
   const [inputData, setInputData] = useState('');
   const [InputDataPlaceholder, setInputDataPlaceholder] = useState('');
