@@ -10,7 +10,8 @@ export default function Navbar() {
   const [showModal, setShowModal] = React.useState(false);
 
   const helpStr = `
-  D2-Bearer provides an easy and secure way to generate an OAuth Bearer Token
+  D2-Bearer provides an easy and secure way to generate an OAuth Bearer Token.<br> 
+  No data is ever stored server-side and data is transmitted to Bungie.net via POST requests.
   <br><br>
   
   It is important that the application's origin header is set correctly or it wont generate the token properly!
