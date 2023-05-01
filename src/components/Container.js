@@ -258,7 +258,7 @@ async function grabBearerToken(id,secret,code){
         <div className="m-auto">
           <div className="title text-center">
             <h1 className="text-6xl font-normal">
-              <span className="logo-icon"></span>
+              <span className="logo-icon-white"></span>
               2-Bearer
             </h1>
           </div>
