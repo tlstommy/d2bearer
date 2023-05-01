@@ -16,10 +16,10 @@ export default function Navbar() {
   
   It is important that the application's origin header is set correctly or it wont generate the token properly!
   <br><br>
-  Have an issue or suggestion? Please submit an issue <a class="text-blue-500" href="https://github.com/lulamae12/d2bearer/issues">here!</a>
+  Have an issue or suggestion? Please submit an issue <a class="hover:underline text-blue-500" href="https://github.com/lulamae12/d2bearer/issues">here!</a>
   <hr>
   <small>
-    <a class="text-blue-500" href="https://github.com/Bungie-net/api/wiki/OAuth-Documentation">Bungie.net API documentation</a>
+    <a class="hover:underline text-blue-500" href="https://github.com/Bungie-net/api/wiki/OAuth-Documentation">Bungie.net API documentation</a>
   </small>`
   
 

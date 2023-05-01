@@ -50,6 +50,10 @@ summary {
   cursor: pointer;
 }
 
+footer {
+  vertical-align: top;
+}
+
 
 .textBox{
 
