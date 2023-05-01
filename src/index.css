@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  background: linear-gradient(to bottom right,#48bf91,#021a83) fixed;
+}
 
 body {
   margin: 0;
@@ -10,7 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to bottom right,#48bf91,#021a83) fixed;
+  
   
 }
 
