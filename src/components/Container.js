@@ -237,9 +237,9 @@ async function grabBearerToken(id,secret,code){
     
     //set data from submit
     userInput = inputData;
-    //console.log(appCliID);
 
-    console.log(userInput);
+
+
     //reset input data
     setInputData("")
     appSubmit(stepCounter,inputData);
@@ -247,7 +247,6 @@ async function grabBearerToken(id,secret,code){
 
   }
 
-  console.log("current step: ",stepCounter);
 
   
   
