@@ -2,9 +2,13 @@ import { Github } from 'react-bootstrap-icons'
 import { QuestionCircle } from 'react-bootstrap-icons'
 import { Terminal } from 'react-bootstrap-icons'
 import { Tooltip} from "@material-tailwind/react";
+import React from "react";
+import PopupModal from "./PopupModal";
 
 
 export default function Navbar() {
+  const [showModal, setShowModal] = React.useState(false);
+
   return (
     <header>
       <nav class="mb-2 mt-0 text-2xl bg-gray-500 py-5 px-3 lg:px-6 sfont-medium leading-tight text-primary">
@@ -15,7 +19,7 @@ export default function Navbar() {
           </div>
           <div class="flex items-center lg:order-2">
             <Tooltip class="absolute z-50 whitespace-normal break-words rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none"
-              content="Help"
+              content="CLI-Version"
               animate={{
                 mount: { scale: 1, y: 0 },
                 unmount: { scale: 0, y: 25 },
@@ -25,13 +29,13 @@ export default function Navbar() {
             </Tooltip>
 
             <Tooltip class="absolute z-50 whitespace-normal break-words rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none" 
-              content="CLI-Version" 
+              content="Help" 
               animate={{
                 mount: { scale: 1, y: 0 },
                 unmount: { scale: 0, y: 25 },
               }}
             >
-              <a class="px-3" href="https://github.com/lulamae12/d2bearer"><QuestionCircle size={32}/></a>
+              <QuestionCircle size={32} onClick={()=>setShowModal(true)}/>
             </Tooltip>
 
             <Tooltip class="absolute z-50 whitespace-normal break-words rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none"
@@ -46,6 +50,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      {showModal ? (<PopupModal showModal={showModal} setShowModal={setShowModal} />) : null}
     </header>
   );
 }

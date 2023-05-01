@@ -1,10 +1,10 @@
 //popup to show messages
-export default function PopupModal(props) {
-    //bool to show modal
-    const [showModal, setShowModal] = React.useState(false);
+export default function PopupModal({showModal,setShowModal}) {
+  
     return (
-      <div className="textBox break-normal">
-        <span id="textBoxSpan">{props.textboxText}</span>
+      <div>
+        <p>hi</p> 
+        <button onClick={()=>setShowModal(false)}>click</button>
       </div>
     );
 }
