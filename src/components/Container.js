@@ -4,7 +4,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import TextBox from "./TextBox";
-
+import { CodeSlash } from 'react-bootstrap-icons'
 import Button from "./Button";
 import { useState, useEffect  } from 'react';
 
@@ -17,8 +17,6 @@ export default function Container() {
 
   let postResponseJSON;
 
-
-  
   // Declare a new state variable, inputData and set setInputData to input data
   const [inputData, setInputData] = useState('');
   const [InputDataPlaceholder, setInputDataPlaceholder] = useState('');
@@ -37,7 +35,7 @@ export default function Container() {
 
   //strings for each step
   const stepStrings = {
-    enterClientIDString: <p>This tool provides an easy and secure way to generate a OAuth2 bearer token for Bungie.net's Destiny 2 API.<br/><br/>You can access the Bungie Developer Portal&nbsp;<a class="hover:underline text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out" href="https://www.bungie.net/en/Application" target="_blank" rel="noreferrer">here.</a><br/><br/>To begin, please enter your Application's Client ID below and click submit.</p>,
+    enterClientIDString: <p>This tool provides an easy and secure way to generate a OAuth bearer token for Bungie.net's Destiny 2 API.<br/><br/>You can access the Bungie Developer Portal&nbsp;<a class="hover:underline text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out" href="https://www.bungie.net/en/Application" target="_blank" rel="noreferrer">here.</a><br/><br/>To begin, enter your Application's Client ID below and click submit.</p>,
     enterClientSecretString: <p><b>App Client ID: </b>{cliID}<br/><b>App Client Secret: </b>{cliSecret}<br/><b>App Authorization Code: </b>{split}<br/><br/><hr/><br/>Now, please enter your Application's Client Secret below and click submit.</p>,
 
   }
@@ -201,8 +199,9 @@ async function grabBearerToken(id,secret,code){
             <div class="px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
               <div class="question-wrap">
                 <details>
-                  <summary class="text-sm font-medium text-black sm:col-span-1">
+                  <summary class="text-sm font-medium text-black sm:col-span-1 flex items-center justify-between w-full">
                     <h2>Click to view Full JSON Response</h2>
+                    <CodeSlash/>
                   </summary>
                   <br></br>
                   <p class="text-sm text-white px-5 py-6 bg-slate-700 break-all">
@@ -236,9 +235,9 @@ async function grabBearerToken(id,secret,code){
     
     //set data from submit
     userInput = inputData;
-    //console.log(appCliID);
 
-    console.log(userInput);
+
+
     //reset input data
     setInputData("")
     appSubmit(stepCounter,inputData);
@@ -246,7 +245,6 @@ async function grabBearerToken(id,secret,code){
 
   }
 
-  console.log("current step: ",stepCounter);
 
   
   
@@ -258,7 +256,7 @@ async function grabBearerToken(id,secret,code){
         <div className="m-auto">
           <div className="title text-center">
             <h1 className="text-6xl font-normal">
-              <span className="logo-icon"></span>
+              <span className="logo-icon-white"></span>
               2-Bearer
             </h1>
           </div>
