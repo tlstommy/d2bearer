@@ -38,7 +38,7 @@ export default function Navbar() {
                 unmount: { scale: 0, y: 25 },
               }}
             >
-              <a class="px-3" href="https://github.com/lulamae12/d2bearer-cli"><Terminal size={32}/></a>
+              <a class="px-3" href="https://github.com/tlstommy/d2bearer-cli"><Terminal size={32}/></a>
             </Tooltip>
 
             <Tooltip class="absolute z-50 whitespace-normal break-words rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none" 
@@ -58,7 +58,7 @@ export default function Navbar() {
                 unmount: { scale: 0, y: 25 },
               }}
             >
-              <a class="px-3" href="https://github.com/lulamae12/d2bearer"><Github size={32}/></a>
+              <a class="px-3" href="https://github.com/tlstommy/d2bearer"><Github size={32}/></a>
             </Tooltip>
           </div>
         </div>
