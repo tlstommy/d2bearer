@@ -1,2 +1,2 @@
 # d2bearer
-react version of d2bearer-cli
+react version of d2bearer-cli.
