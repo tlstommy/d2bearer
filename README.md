@@ -1,2 +1,4 @@
 # d2bearer
-react version of d2bearer-cli.
+React version of my python-based [d2bearer-cli](https://github.com/tlstommy/D2Bearer-Cli) project.
+
+Link: [d2bearer.tlstommy.com](https://d2bearer.tlstommy.com/)
